@@ -1,20 +1,35 @@
 const ethers = require('ethers');
 //This contains an Endpoint URL, and a wallet private key!!!
-const secrets = require('./secrets.json');
+
+const POLYGON_NETWORK_RPC = process.env.POLYGON_NETWORK_RPC;
+const POLYGON_NETWORK_CHAIN_ID = Number(process.env.POLYGON_NETWORK_CHAIN_ID);
+const POLYGON_CURRENCY = process.env.POLYGON_CURRENCY;
+
+const ETHEREUM_RPC = process.env.ETHEREUM_RPC;
+const ETHEREUM_CHAIN = process.env.ETHEREUM_CHAIN;
+const ETHEREUM_CURRENCY = process.env.ETHEREUM_CURRENCY;
+
+const WALLET_PRIVATE_KEY = process.env.WALLET_PRIVATE_KEY;
 
 //THIS WORK ON BSC TESTNET!!!!!
 
 //All Values are for the testnet!!!!!!!!
 
+//OUTPUT_TOKEN
 const WBNB = "0xae13d989dac2f0debff460ac112a837c89baa7cd"; 
+
+//INPUT_TOKEN
 const BUSD = "0x78867BbEeF44f2326bF8DDd1941a4439382EF2A7";
 
-const router = "0x9Ac64Cc6e4415144C455BD8E4837Fea55603e5c3";
+const router = process.env.QUICKSWAP_ROUTER_ADDRESS;
+// "0xa5E0829CaCEd8fFDD4De3c43696c57F7D7A678ff" 
+//"0x9Ac64Cc6e4415144C455BD8E4837Fea55603e5c3";
 
 const provider = new ethers.providers.JsonRpcProvider(secrets.provider);
 const wallet = new ethers.Wallet(secrets.privatekey);
 const signer = wallet.connect(provider);
 
+//quickswap or uniswap
 const routerContract = new ethers.Contract(
     router,
     [
@@ -24,6 +39,7 @@ const routerContract = new ethers.Contract(
     signer
 );
 
+//approve the token
 const busdContract = new ethers.Contract(
     BUSD,
     [

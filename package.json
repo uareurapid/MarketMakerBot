@@ -1,0 +1,29 @@
+{
+  "name": "marketmakerbot",
+  "version": "1.0.0",
+  "description": "Simple Market Maker Bot for GGTK",
+  "main": "newbot.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/uareurapid/MarketMakerBot.git"
+  },
+  "keywords": [
+    "bot",
+    "automated",
+    "market",
+    "maker",
+    "GGTK"
+  ],
+  "author": "Paulo Cristo @TokenWise",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/uareurapid/MarketMakerBot/issues"
+  },
+  "homepage": "https://github.com/uareurapid/MarketMakerBot#readme",
+  "dependencies": {
+    "ethers": "^5.6.9"
+  }
+}
