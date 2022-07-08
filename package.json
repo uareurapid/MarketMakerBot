@@ -4,7 +4,10 @@
   "description": "Simple Market Maker Bot for GGTK",
   "main": "newbot.js",
   "scripts": {
-    "test": "test"
+    "test": "test",
+    "quickswap": "node quickswapbot.js",
+    "uniswap": "node uniswapbot.js",
+    "runbots": "npm run quickswap & npm run uniswap"
   },
   "repository": {
     "type": "git",
@@ -24,6 +27,7 @@
   },
   "homepage": "https://github.com/uareurapid/MarketMakerBot#readme",
   "dependencies": {
-    "ethers": "^5.6.9"
+    "ethers": "^5.6.9",
+    "node-cron": "^3.0.1"
   }
 }
