@@ -1,2 +1,86 @@
 using node 14.17.0
-execute: npm run runbots
+execute: pm2 start (to start) | pm2 stop all (to stop) | pm2 logs (to check logs on console)
+log files go to ~/.pm2/logs
+at the bottom of the market_maket.js script we can modify to run daily using a cron job or just run once (manually)
+Instructions on the file
+
+
+.env file configs
+
+POLYGON_NETWORK_RPC = https://polygon-mainnet.infura.io/v3/PROJECT_ID
+#mainnet https://polygon-mainnet.infura.io/v3/PROJECT_ID
+#testnet https://polygon-mumbai.infura.io/v3/PROJECT_ID
+
+POLYGON_NETWORK_CHAIN_ID=80001
+#137 for mainnnet
+POLYGON_CURRENCY=MATIC
+
+#ropsten
+ETHEREUM_NETWORK_RPC=https://ropsten.infura.io/v3/PROJECT_ID
+#ropsten https://ropsten.infura.io/v3/PROJECT_ID
+#mainnet https://mainnet.infura.io/v3/PROJECT_ID
+ETHEREUM_NETWORK_CHAIN_ID=3
+#mainnet 1
+ETHEREUM_CURRENCY=ETH
+
+WALLET_PRIVATE_KEY = PRIVATE_KEY_OF_THE_MAIN_WALLET_WITH_FUNDS
+
+#If network  is polygon will execute trade on quickswap, otherwise on uniswap
+#we need to set the INPUT_TOKENS according to the liquidity pools created and the given pairs
+#for instance on QuickSwap the Pool pair is GGTK <-> WETH
+#on Uniswap the pool pair is GGTK <-> ETH/WETH
+
+#Uniswap Wrapped/native tokens
+UNISWAP_INPUT_TOKEN_SYMBOL=WETH
+UNISWAP_INPUT_TOKEN_ADDRESS=0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2
+#ropsten WETH: 0xc778417E063141139Fce010982780140Aa0cD5Ab
+#mainnet WETH: 0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2
+
+UNISWAP_OUTPUT_TOKEN_SYMBOL = GGTK
+UNISWAP_OUTPUT_TOKEN_ADDRESS = 0xfa99a87b14b02e2240c79240c5a20f945ca5ef76
+#mainnet GGTK: 0xfa99a87b14b02e2240c79240c5a20f945ca5ef76
+UNISWAP_ROUTER_ADDRESS = 0x7a250d5630B4cF539739dF2C5dAcb4c659F2488D
+
+
+TRANSFER_FEES_EXTRA_PERCENTAGE = 5
+#extra 5%
+
+#quickswap Wrapped/native tokens
+QUICKSWAP_INPUT_TOKEN_SYMBOL = WETH
+#WETH
+QUICKSWAP_INPUT_TOKEN_ADDRESS = 0x7ceb23fd6bc0add59e62ac25578270cff1b9f619
+
+#MATIC mumbai: 0x0000000000000000000000000000000000001010
+#MATIC mainnet 0x0000000000000000000000000000000000001010
+#WETH 
+#WETH testnet/mumbai https://mumbai.polygonscan.com/token/0xa6fa4fb5f76172d178d61b04b0ecd319c5d1c0aa
+#WETH mainnet https://polygonscan.com/token/0x7ceb23fd6bc0add59e62ac25578270cff1b9f619
+QUICKSWAP_OUTPUT_TOKEN_SYMBOL = GGTK
+QUICKSWAP_OUTPUT_TOKEN_ADDRESS = 0x49b1be61a8ca3f9a9f178d6550e41e00d9162159
+#0x49b1be61a8ca3f9a9f178d6550e41e00d9162159
+#mainnet 0x49b1be61a8ca3f9a9f178d6550e41e00d9162159
+#testnet 0xF90ac8CA4d4DDe9917883417754D633e8d9D79Fe
+QUICKSWAP_ROUTER_ADDRESS = 0xa5E0829CaCEd8fFDD4De3c43696c57F7D7A678ff
+
+#random between min & max
+MIN_TOKENS_AMOUNT_TO_BUY = 5000
+#5000
+MAX_TOKENS_AMOUNT_TO_BUY = 10000
+#10000
+
+#random time window/interval until sell (in minutes)
+#10 h
+MIN_WAIT_BEFORE_SELL_INTERVAL = 600
+#600
+
+#24 h
+MAX_WAIT_BEFORE_SELL_INTERVAL = 1440
+#1440
+
+#slippage  value in %
+TRANSACTION_SPLIPPAGE = 10
+
+CRON_SCHEDULE = 0 0 0 * * *
+# this rule would run every day at 00:00 AM (midnight)
+
+
